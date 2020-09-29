@@ -2,10 +2,10 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UserRegistration {
+public class UserUserRegistration {
 
 	private String validateInput(String name) {
-		String expression = "(^[A-Z]{1})[a-z]{2,}$"; // Pattern for Name
+		String expression = "(^[A-Z]{1})[a-z]{2,}$"; // Pattern for Names
 		Pattern pattern = Pattern.compile(expression);
 		Matcher match = pattern.matcher(name);
 		if(match.find()) {
@@ -31,11 +31,22 @@ public class UserRegistration {
 		}
 		return "invalid";
 		
-	}	
+	}
+	private String validatePassword(String pass) {
+		String expression = "[A-Za-z0-9]{8,}";	//Pattern for Password
+		Pattern pattern = Pattern.compile(expression);
+		Matcher match = pattern.matcher(pass);
+		if(match.find()) {
+			return "valid";
+		}
+		return "invalid";
+		
+	}
+	
 		public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		UserRegistration user = new UserRegistration();
+		UserUserRegistration user = new UserUserRegistration();
 		
 		System.out.println("Enter the first name");
 		String firstName = sc.nextLine();
@@ -45,12 +56,16 @@ public class UserRegistration {
 		String Email = sc.nextLine();
 		System.out.println("Enter the Phone Number");
 		String Phone = sc.nextLine();
+		System.out.println("Enter the Password");
+		String Password = sc.nextLine();
 		
 		System.out.println(firstName + " is " +user.validateInput(firstName)); //Validating firstName
 		System.out.println(lastName + " is " +user.validateInput(lastName)); //Validating lastName
-		System.out.println(Email + " is " +user.validateEmail(Email));	// Validating email Id
+		System.out.println(Email + " is " +user.validateEmail(Email));	// Validating Email
 		System.out.println(Phone+ " is " +user.validateNumber(Phone));	// Validating Number
+		System.out.println(Password+ " is " +user.validatePassword(Password));//Validating Password
 		
 		sc.close();
-	}	
+	}
+	
 }
