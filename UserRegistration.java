@@ -2,70 +2,40 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UserUserRegistration {
+public class UserRegistration {
 
-	private String validateInput(String name) {
-		String expression = "(^[A-Z]{1})[a-z]{2,}$"; // Pattern for Names
-		Pattern pattern = Pattern.compile(expression);
-		Matcher match = pattern.matcher(name);
-		if(match.find()) {
+	private String validateEmail(String check) {
+		String regex = "^[a-zA-Z0-9_]+[-+.]?[A-Za-z0-9_]+@[A-Za-z0-9]+[.][a-z]{2,}[.]?([a-z]{2,})?$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(check);
+		if(matcher.find()) {
 			return "valid";
 		}
 		return "invalid";
-	}
-	private String validateEmail(String Email) {
-		String expression = "(abc?[.][A-Za-z]*@bl[.]co[.][A-Za-z]{2,})$"; // Pattern for Email
-		Pattern pattern = Pattern.compile(expression);
-		Matcher match = pattern.matcher(Email);
-		if(match.find()) {
-			return "valid";
-		}
-		return "invalid";
-	}
-	private String validateNumber(String number) {
-		String expression = "^[0-9]{2}?[ ][0-9]{4,13}";	// Pattern for Number
-		Pattern pattern = Pattern.compile(expression);
-		Matcher match = pattern.matcher(number);
-		if(match.find()) {
-			return "valid";
-		}
-		return "invalid";
-		
-	}
-	private String validatePassword(String pass) {
-		String expression = "(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z0-9]{8,}";	//Pattern for Password
-		Pattern pattern = Pattern.compile(expression);
-		Matcher match = pattern.matcher(pass);
-		if(match.find()) {
-			return "valid";
-		}
-		return "invalid";
-		
 	}
 	
-		public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		
-		UserUserRegistration user = new UserUserRegistration();
-		
-		System.out.println("Enter the first name");
-		String firstName = sc.nextLine();
-		System.out.println("Enter the last name");
-		String lastName = sc.nextLine();
-		System.out.println("Enter the Email Id");
-		String Email = sc.nextLine();
-		System.out.println("Enter the Phone Number");
-		String Phone = sc.nextLine();
-		System.out.println("Enter the Password");
-		String Password = sc.nextLine();
-		
-		System.out.println(firstName + " is " +user.validateInput(firstName)); //Validating firstName
-		System.out.println(lastName + " is " +user.validateInput(lastName)); //Validating lastName
-		System.out.println(Email + " is " +user.validateEmail(Email));	// Validating Email
-		System.out.println(Phone+ " is " +user.validateNumber(Phone));	// Validating Number
-		System.out.println(Password+ " is " +user.validatePassword(Password));//Validating Password
-		
-		sc.close();
+	public static void main(String[] args) {
+		UserRegistration patternMatcher = new UserRegistration();
+
+		String a1 = abc@yahoo.com;
+		System.out.println(a1 + "----->" + patternMatcher.validateEmail(a));
+		String a2 = abc-100@yahoo.com,;
+		System.out.println(a2 + "----->" + patternMatcher.validateEmail(a));
+		String a3 = abc.100@yahoo.com;
+		System.out.println(a3 + "----->" + patternMatcher.validateEmail(a));
+		String a4 = abc111@abc.com;
+		System.out.println(a4 + "----->" + patternMatcher.validateEmail(a));
+		String a5 = abc-100@abc.net;
+		System.out.println(a5 + "----->" + patternMatcher.validateEmail(a));
+		String a6 = abc.100@abc.com.au;
+		System.out.println(a6 + "----->" + patternMatcher.validateEmail(a));
+		String a7 = abc@1.com;
+		System.out.println(a7 + "----->" + patternMatcher.validateEmail(a));
+		String a8 = abc@gmail.com.com;
+		System.out.println(a8 + "----->" + patternMatcher.validateEmail(a));
+		String a9 = abc+100@gmail.com;	
+		System.out.println(a9 + "----->" + patternMatcher.validateEmail(a));
+
 	}
 	
 }
