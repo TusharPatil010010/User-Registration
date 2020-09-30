@@ -17,24 +17,24 @@ public class UserRegistration {
 	public static void main(String[] args) {
 		UserRegistration patternMatcher = new UserRegistration();
 
-		String a1 = abc@yahoo.com;
-		System.out.println(a1 + "----->" + patternMatcher.validateEmail(a));
-		String a2 = abc-100@yahoo.com,;
-		System.out.println(a2 + "----->" + patternMatcher.validateEmail(a));
-		String a3 = abc.100@yahoo.com;
-		System.out.println(a3 + "----->" + patternMatcher.validateEmail(a));
-		String a4 = abc111@abc.com;
-		System.out.println(a4 + "----->" + patternMatcher.validateEmail(a));
-		String a5 = abc-100@abc.net;
-		System.out.println(a5 + "----->" + patternMatcher.validateEmail(a));
-		String a6 = abc.100@abc.com.au;
-		System.out.println(a6 + "----->" + patternMatcher.validateEmail(a));
-		String a7 = abc@1.com;
-		System.out.println(a7 + "----->" + patternMatcher.validateEmail(a));
-		String a8 = abc@gmail.com.com;
-		System.out.println(a8 + "----->" + patternMatcher.validateEmail(a));
-		String a9 = abc+100@gmail.com;	
-		System.out.println(a9 + "----->" + patternMatcher.validateEmail(a));
+		String a1 = "abc@yahoo.com";
+		System.out.println(a1 + "----->" + patternMatcher.validateEmail(a1));
+		String a2 = "abc-100@yahoo.com";
+		System.out.println(a2 + "----->" + patternMatcher.validateEmail(a2));
+		String a3 = "abc.100@yahoo.com";
+		System.out.println(a3 + "----->" + patternMatcher.validateEmail(a3));
+		String a4 = "abc111@abc.com";
+		System.out.println(a4 + "----->" + patternMatcher.validateEmail(a4));
+		String a5 = "abc-100@abc.net";
+		System.out.println(a5 + "----->" + patternMatcher.validateEmail(a5));
+		String a6 = "abc.100@abc.com.au";
+		System.out.println(a6 + "----->" + patternMatcher.validateEmail(a6));
+		String a7 = "abc@1.com";
+		System.out.println(a7 + "----->" + patternMatcher.validateEmail(a7));
+		String a8 = "abc@gmail.com.com";
+		System.out.println(a8 + "----->" + patternMatcher.validateEmail(a8));
+		String a9 = "abc+100@gmail.com";	
+		System.out.println(a9 + "----->" + patternMatcher.validateEmail(a9));
 
 	}
 	
