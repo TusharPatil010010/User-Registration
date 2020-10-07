@@ -1,101 +1,54 @@
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 public class UserRegistration {
+	// GLOBAL CONSTANTS
+	private static String NAME = "^([A-Z]{1}[A-Za-z]{2,})$";
+	private static String MOBILE = "^([0-9]{1,4}[ ][0-9]{10})$";
+	private static String EMAIL = "^[a-zA-Z0-9_]+[-+.]?[A-Za-z0-9_]+@[A-Za-z0-9]+[.][a-z]{2,}[.]?([a-z]{2,})?$";
+	private static String PASSWORD = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[$#@!%_&])[A-Za-z0-9$#@!%_&]{8,}$";
+	
 
-	private String validateInput(String name) {
-		String expression = "(^[A-Z]{1})[a-z]{2,}$"; // Pattern for Names
-		Pattern pattern = Pattern.compile(expression);
-		Matcher match = pattern.matcher(name);
-		try{
-			if(match.find()) {
-				return "valid";
-			}
-			else {
-				throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidDetails.invalidName, "Invalid Input");
-			}
-		}
-	        catch(InvalidUserDetailsException e) {
-			return e.category.toString();
-		}
-		return "invalid";
-	}
-	private String validateEmail(String Email) {
-		String expression = "(abc?[.][A-Za-z]*@bl[.]co[.][A-Za-z]{2,})$"; // Pattern for Email
-		Pattern pattern = Pattern.compile(expression);
-		Matcher match = pattern.matcher(Email);
-		try{
-			if(match.find()) {
-				return "valid";
-			}
-			else {
-				throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidDetails.invalidEmail, "Invalid Input");
-			}
-		}
-	        catch(InvalidUserDetailsException e) {
-			return e.category.toString();
-		}
-		return "invalid";
-	}
-	private String validateNumber(String number) {
-		String expression = "^[0-9]{2}?[ ][0-9]{4,13}";	// Pattern for Number
-		Pattern pattern = Pattern.compile(expression);
-		Matcher match = pattern.matcher(number);
-		try{
-			if(match.find()) {
-				return "valid";
-			}
-			else {
-				throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidDetails.invalidNumber, "Invalid Input");
-			}
-		}
-	        catch(InvalidUserDetailsException e) {
-			return e.category.toString();
-		}
-		return "invalid";		
-	}
-	private String validatePassword(String pass) {
-		String expression = "(?=.*[A-Z])(?=.*\\d)((?=.*[@$!%*?&]){1})[A-Za-z0-9]{8,}";	//Pattern for Password
-		Pattern pattern = Pattern.compile(expression);
-		Matcher match = pattern.matcher(pass);
-		try{
-			if(match.find()) {
-				return "valid";
-			}
-			else {
-				throw new InvalidUserDetailsException(InvalidUserDetailsException.invalidDetails.invalidPassword, "Invalid Input");
-			}
-		}
-	        catch(InvalidUserDetailsException e) {
-			return e.category.toString();
-		}
-		return "invalid";		
-	}
+	ValidateInput validateFirstName = (String firstName) -> {
+	if(matchingWithPattern(firstName, NAME)) 
+		return "valid"; 
+	else
+		throw new UserRegistrationException("Invalid first name");
+	};
 	
-		public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	ValidateInput validateLastName = (String lastName) -> {
+	if(matchingWithPattern(lastName, NAME)) 
+		return "valid"; 
+	else
+		throw new UserRegistrationException("Invalid first name");
+	};
 		
-		UserRegistration user = new UserRegistration();
-		
-		System.out.println("Enter the first name");
-		String firstName = sc.nextLine();
-		System.out.println("Enter the last name");
-		String lastName = sc.nextLine();
-		System.out.println("Enter the Email Id");
-		String Email = sc.nextLine();
-		System.out.println("Enter the Phone Number");
-		String Phone = sc.nextLine();
-		System.out.println("Enter the Password");
-		String Password = sc.nextLine();
-		
-		System.out.println(firstName + " is " +user.validateInput(firstName)); //Validating firstName
-		System.out.println(lastName + " is " +user.validateInput(lastName)); //Validating lastName
-		System.out.println(Email + " is " +user.validateEmail(Email));	// Validating Email
-		System.out.println(Phone+ " is " +user.validateNumber(Phone));	// Validating Number
-		System.out.println(Password+ " is " +user.validatePassword(Password));//Validating Password
-		
-		sc.close();
-	}
+	ValidateInput validateEmail = (String email) -> {
+		if(matchingWithPattern(email, EMAIL))
+				return "valid";
+		else
+			throw new UserRegistrationException("Invalid email");
+	};
 	
+	ValidateInput validateMobileNumber = (String mobile) -> {
+		if(matchingWithPattern(mobile, MOBILE))
+			return "valid";
+		else
+			throw new UserRegistrationException("Invalid mobile number");
+	};
+
+	ValidateInput validatePassword = (String password) -> {
+		if(matchingWithPattern(password, PASSWORD))
+			return "valid";
+		else
+			throw new UserRegistrationException("Invalid password");
+	};
+
+	public boolean matchingWithPattern(String check, String regex) {
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(check);
+		if (matcher.find()) {
+			return true;
+		}
+		return false;
+	}
 }

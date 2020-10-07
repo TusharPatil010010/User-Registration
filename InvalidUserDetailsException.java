@@ -1,12 +1,9 @@
 public class InvalidUserDetailsException extends Exception {
-	
-	enum invalidDetails{
-		invalidName,invalidEmail,invalidNumber,invalidPassword;
+	enum invalidInputs{
+		invalidFirstName, invalidLastName, invalidEmail, invalidMobileNumber, invalidPassword
 	}
-
-	public invalidDetails category;
-	public InvalidUserDetailsException(invalidDetails category, String message) {
+	public invalidInputs type;
+	public InvalidUserDetailsException(String message) {
 		super(message);
-		this.category = category;
 	}
 }
