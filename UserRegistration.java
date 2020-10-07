@@ -1,5 +1,6 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 public class UserRegistration {
 	// GLOBAL CONSTANTS
 	private static String NAME = "^([A-Z]{1}[A-Za-z]{2,})$";
@@ -7,7 +8,6 @@ public class UserRegistration {
 	private static String EMAIL = "^[a-zA-Z0-9_]+[-+.]?[A-Za-z0-9_]+@[A-Za-z0-9]+[.][a-z]{2,}[.]?([a-z]{2,})?$";
 	private static String PASSWORD = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[$#@!%_&])[A-Za-z0-9$#@!%_&]{8,}$";
 	
-
 	ValidateInput validateFirstName = (String firstName) -> {
 	if(matchingWithPattern(firstName, NAME)) 
 		return "valid"; 
@@ -19,14 +19,14 @@ public class UserRegistration {
 	if(matchingWithPattern(lastName, NAME)) 
 		return "valid"; 
 	else
-		throw new UserRegistrationException("Invalid first name");
+		throw new UserRegistrationException("Invalid last name");
 	};
 		
 	ValidateInput validateEmail = (String email) -> {
 		if(matchingWithPattern(email, EMAIL))
 				return "valid";
 		else
-			throw new UserRegistrationException("Invalid email");
+			throw new UserRegistrationException("Invalid email address");
 	};
 	
 	ValidateInput validateMobileNumber = (String mobile) -> {
