@@ -1,9 +1,9 @@
-public class InvalidUserDetailsException extends Exception {
+public class UserRegistrationException extends Exception {
 	enum invalidInputs{
 		invalidFirstName, invalidLastName, invalidEmail, invalidMobileNumber, invalidPassword
 	}
 	public invalidInputs type;
-	public InvalidUserDetailsException(String message) {
+	public UserRegistrationException(String message) {
 		super(message);
 	}
 }
